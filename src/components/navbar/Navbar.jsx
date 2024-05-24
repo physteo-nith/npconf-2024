@@ -4,6 +4,7 @@ const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollTop, setLastScrollTop] = useState(0);
     const [activeSection, setActiveSection] = useState('Home');
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,25 +32,26 @@ const Navbar = () => {
     useEffect(() => {
         const ticketImage = document.getElementById('ticketImage');
         if (ticketImage) {
-            ticketImage.addEventListener('mouseover', () => {
+            const handleMouseOver = () => {
                 ticketImage.src = '/ticket.png';
-            });
-
-            ticketImage.addEventListener('mouseout', () => {
+            };
+            const handleMouseOut = () => {
                 ticketImage.src = '/ticket1.png';
-            });
+            };
+
+            ticketImage.addEventListener('mouseover', handleMouseOver);
+            ticketImage.addEventListener('mouseout', handleMouseOut);
 
             return () => {
-                ticketImage.removeEventListener('mouseover', () => {
-                    ticketImage.src = '/ticket.png';
-                });
-
-                ticketImage.removeEventListener('mouseout', () => {
-                    ticketImage.src = '/ticket1.png';
-                });
+                ticketImage.removeEventListener('mouseover', handleMouseOver);
+                ticketImage.removeEventListener('mouseout', handleMouseOut);
             };
         }
     }, []);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     return (
         <div>
@@ -65,7 +67,7 @@ const Navbar = () => {
                         </span>
                     </a>
                     <div className="flex md:order-2 h-12 space-x-3 md:space-x-0 rtl:space-x-reverse ">
-                        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+                        <a href="#" className="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
                             <img id="ticketImage" src="/ticket1.png" className="h-20 w-22" alt="Physteo Logo" />
                         </a>
                         <button
@@ -73,36 +75,56 @@ const Navbar = () => {
                             type="button"
                             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                             aria-controls="navbar-sticky"
-                            aria-expanded="false"
+                            aria-expanded={isMenuOpen}
+                            onClick={toggleMenu}
                         >
                             <span className="sr-only">Open main menu</span>
-                            <svg
-                                className="w-5 h-5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 17 14"
-                            >
-                                <path
+                            {isMenuOpen ? (
+                                <svg
+                                    className="w-5 h-5"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
                                     stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M1 1h15M1 7h15M1 13h15"
-                                />
-                            </svg>
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
+                                </svg>
+                            ) : (
+                                <svg
+                                    className="w-5 h-5"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 17 14"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M1 1h15M1 7h15M1 13h15"
+                                    />
+                                </svg>
+                            )}
                         </button>
                     </div>
                     <div
-                        className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                        className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`}
                         id="navbar-sticky"
                     >
                         <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:border-gray-700">
                             <li>
                                 <a
                                     href="#Home"
-                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Home' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Home' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     aria-current="page"
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     Home
                                 </a>
@@ -110,7 +132,8 @@ const Navbar = () => {
                             <li>
                                 <a
                                     href="#About"
-                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'About' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'About' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     About
                                 </a>
@@ -118,7 +141,8 @@ const Navbar = () => {
                             <li>
                                 <a
                                     href="#Speakers"
-                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Speakers' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Speakers' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     Speakers
                                 </a>
@@ -126,7 +150,8 @@ const Navbar = () => {
                             <li>
                                 <a
                                     href="#Sponsors"
-                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Sponsors' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Sponsors' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     Sponsors
                                 </a>
@@ -134,7 +159,8 @@ const Navbar = () => {
                             <li>
                                 <a
                                     href="#Team"
-                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Team' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Team' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     Team
                                 </a>
@@ -142,7 +168,8 @@ const Navbar = () => {
                             <li>
                                 <a
                                     href="#FAQ"
-                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'FAQ' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'FAQ' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     FAQ
                                 </a>

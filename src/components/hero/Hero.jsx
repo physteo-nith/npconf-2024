@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import Star from "../star/Star"; // Ensure this path matches your project structure
 
@@ -19,34 +19,32 @@ const textVariants = {
 
 const Hero = () => {
     const controls = useAnimation();
+    const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
         controls.start('animate');
     }, [controls]);
 
-    // Animation variants for the sliding effect
-    const slideVariants = {
-        animate: {
-            x: ["0%", "-100%"],
-            transition: {
-                x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 20,
-                    ease: "linear"
-                },
-            },
-        },
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
-        <div className="relative flex flex-col h-90vh overflow-hidden">
+        <div className="relative flex flex-col h-screen overflow-hidden" style={{ marginTop: '-70px' }}> {/* Adjust marginTop to move content upward */}
             <div className="flex flex-1">
                 <div className="flex-1"></div> {/* Left side div */}
                 <div className="absolute inset-0 overflow-hidden z-0"> {/* Container for stars to prevent overflow */}
                     <Star src="/star2.png" />
                     <Star src="/star2.png" />
-
                     <Star src="/star2.png" />
                 </div>
                 <div className="flex-5 flex justify-center items-center relative z-10"> {/* Center div with alignment */}
@@ -64,19 +62,17 @@ const Hero = () => {
                 <div className="absolute inset-0 overflow-hidden z-0"> {/* Container for stars to prevent overflow */}
                     <Star src="/star2.png" />
                     <Star src="/star2.png" />
-
                     <Star src="/star2.png" />
                 </div>
                 <div className="flex-1"></div> {/* Right side div */}
             </div>
-            <div className="relative w-full h-18 overflow-hidden mt-auto"> {/* Full-width image div with overflow hidden */}
+            <div className="relative w-full h-24 overflow-hidden mt-auto"> {/* Full-width image div with overflow hidden */}
                 <motion.div
                     className="absolute top-0 left-0 w-[200%] h-full flex"  // Container div with double width and flexbox
-                    variants={slideVariants}
-                    animate="animate"
+                    style={{ transform: `translateX(${-scrollY * 0.5}px)` }} // Adjust the speed factor as needed
                 >
-                    <img src="/design.png" alt="Decorative strip" className="w-1/2 h-full object-cover" />
-                    <img src="/design.png" alt="Decorative strip" className="w-1/2 h-full object-cover" />
+                    <img src="/design2.png" alt="Decorative strip" className="w-1/2 h-full object-cover" onError={() => console.error("Failed to load design.png")} />
+                    <img src="/design2.png" alt="Decorative strip" className="w-1/2 h-full object-cover" onError={() => console.error("Failed to load design.png")} />
                 </motion.div>
             </div>
         </div>

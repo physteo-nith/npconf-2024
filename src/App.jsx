@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './components/navbar/Navbar'
 import Hero from './components/hero/Hero'
 import FAQ from './components/faq/Faq'
+import Starfield from './components/star/Starfield'
 
 
 function App() {
@@ -10,6 +11,12 @@ function App() {
 
   return (
     <div>
+      <Starfield
+        starCount={5000}
+        starColor={[255, 255, 255]}
+        speedFactor={0.15}
+        backgroundColor="black"
+      />
       <section id='Navbar'>
         <Navbar />
       </section>

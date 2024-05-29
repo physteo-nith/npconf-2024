@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import Star from "../star/Star"; // Ensure this path matches your project structure
 
 const textVariants = {
     initial: {
@@ -42,11 +41,7 @@ const Hero = () => {
         <div className="relative flex flex-col h-screen overflow-hidden" style={{ marginTop: '-70px' }}> {/* Adjust marginTop to move content upward */}
             <div className="flex flex-1">
                 <div className="flex-1"></div> {/* Left side div */}
-                <div className="absolute inset-0 overflow-hidden z-0"> {/* Container for stars to prevent overflow */}
-                    <Star src="/star2.png" />
-                    <Star src="/star2.png" />
-                    <Star src="/star2.png" />
-                </div>
+
                 <div className="flex-5 flex justify-center items-center relative z-10"> {/* Center div with alignment */}
                     <motion.div variants={textVariants} initial="initial" animate={controls} className="w-4/5 mx-auto text-center">
                         <motion.a variants={textVariants}><img className='my-14 mx-auto' src='/pycon.svg' alt='' /></motion.a>
@@ -59,11 +54,7 @@ const Hero = () => {
                         </div>
                     </motion.div>
                 </div>
-                <div className="absolute inset-0 overflow-hidden z-0"> {/* Container for stars to prevent overflow */}
-                    <Star src="/star2.png" />
-                    <Star src="/star2.png" />
-                    <Star src="/star2.png" />
-                </div>
+
                 <div className="flex-1"></div> {/* Right side div */}
             </div>
             <div className="relative w-full h-24 overflow-hidden mt-auto"> {/* Full-width image div with overflow hidden */}

@@ -57,17 +57,17 @@ const Sponsor = () => {
                 </div>
             </motion.div>
             <motion.div
-                className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 "
+                className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-4 overflow-x-scroll md:overflow-x-visible scrollbar-hide"
                 variants={containerVariants}
             >
                 {sponsors.map((sponsor, index) => (
                     <motion.div
                         key={index}
-                        className="  p-6 rounded-lg shadow-md flex flex-col items-center"
+                        className="p-6 rounded-lg shadow-md flex flex-col items-center min-w-[250px] md:min-w-0"
                         variants={itemVariants}
                     >
                         <div className="w-40 h-40 rounded-full overflow-hidden mb-4">
-                            <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover " />
+                            <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover" />
                         </div>
                         <h2 className="text-slate-100 font-bold text-1xl text-center">{sponsor.name}</h2>
                     </motion.div>

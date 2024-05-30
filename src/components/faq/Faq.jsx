@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaLinkedin, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -81,7 +82,7 @@ const FAQ = () => {
                 {/* FAQ Section */}
                 <div className="md:w-1/2 md:pr-4 h-112 overflow-y-auto">
                     <h1 className="text-3xl font-bold mb-6 text-slate-300 sticky top-0 bg-neutral-400 bg-opacity-30 backdrop-filter flex items-center justify-center backdrop-blur-lg rounded-lg py-4">
-                        Frequently asked questions
+                        Frequently Asked Questions
                     </h1>
                     {faqs.map((faq, index) => (
                         <motion.div
@@ -94,7 +95,7 @@ const FAQ = () => {
                                 onClick={() => toggleFAQ(index)}
                             >
                                 <h3 className="font-semibold">{faq.question}</h3>
-                                <span>{activeIndex === index ? '-' : '+'}</span>
+                                <span>{activeIndex === index ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
                             </div>
                             {activeIndex === index && (
                                 <div className="bg-gray-600 p-4 rounded-lg mt-2">
@@ -112,16 +113,16 @@ const FAQ = () => {
                 >
                     <h1 className="text-4xl font-bold mb-8 text-slate-300 text-center">Contact Us</h1>
                     <div className="flex space-x-8">
-                        <a href="https://www.linkedin.com/in/physteo-nith-34a405255/" target="_blank" className="text-4xl text-blue-600 hover:text-blue-800 transition-colors duration-300 icon-hover">
+                        <a href="https://www.linkedin.com/in/physteo-nith-34a405255/" target="_blank" rel="noopener noreferrer" className="text-4xl text-blue-600 hover:text-blue-800 transition-colors duration-300 icon-hover">
                             <FaLinkedin />
                         </a>
-                        <a href="https://github.com/physteo-nith/" target="_blank" className="text-4xl text-blue hover:text-gray-700 transition-colors duration-300 icon-hover">
+                        <a href="https://github.com/physteo-nith/" target="_blank" rel="noopener noreferrer" className="text-4xl text-blue hover:text-gray-700 transition-colors duration-300 icon-hover">
                             <FaGithub />
                         </a>
-                        <a href="https://www.instagram.com/physteo?igsh=enh1NWFucDJ5NGc4/" target="_blank" className="text-4xl text-blue hover:text-pink-800 transition-colors duration-300 icon-hover">
+                        <a href="https://www.instagram.com/physteo?igsh=enh1NWFucDJ5NGc4/" target="_blank" rel="noopener noreferrer" className="text-4xl text-blue hover:text-pink-800 transition-colors duration-300 icon-hover">
                             <FaInstagram />
                         </a>
-                        <a href="https://x.com/physteo?t=_nhVeLqYEwVic5EQpb4BvQ&s=09/" target="_blank" className="text-4xl text-blue-500 hover:text-blue-700 transition-colors duration-300 icon-hover">
+                        <a href="https://x.com/physteo?t=_nhVeLqYEwVic5EQpb4BvQ&s=09/" target="_blank" rel="noopener noreferrer" className="text-4xl text-blue-500 hover:text-blue-700 transition-colors duration-300 icon-hover">
                             <FaTwitter />
                         </a>
                     </div>
@@ -135,7 +136,7 @@ const FAQ = () => {
                     height: 28rem; /* Custom height */
                 }
             `}</style>
-        </div >
+        </div>
     );
 };
 

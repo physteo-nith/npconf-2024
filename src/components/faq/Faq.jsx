@@ -80,7 +80,7 @@ const FAQ = () => {
             >
                 {/* FAQ Section */}
                 <div className="md:w-1/2 md:pr-4 h-112 overflow-y-auto">
-                    <h1 className="text-3xl font-bold mb-6 text-slate-300 sticky top-0 bg-neutral-400 bg-opacity-30 backdrop-filter flex  items-center justify-center backdrop-blur-lg rounded-lg py-4">
+                    <h1 className="text-3xl font-bold mb-6 text-slate-300 sticky top-0 bg-neutral-400 bg-opacity-30 backdrop-filter flex items-center justify-center backdrop-blur-lg rounded-lg py-4">
                         Frequently asked questions
                     </h1>
                     {faqs.map((faq, index) => (
@@ -110,7 +110,7 @@ const FAQ = () => {
                     className="md:w-1/2 md:pl-4 mt-6 md:mt-0 flex flex-col items-center justify-center"
                     variants={itemVariants}
                 >
-                    <h1 className="text-4xl font-bold mb-8 text-slate-300">Contact Us</h1>
+                    <h1 className="text-4xl font-bold mb-8 text-slate-300 text-center">Contact Us</h1>
                     <div className="flex space-x-8">
                         <a href="https://www.linkedin.com/in/physteo-nith-34a405255/" className="text-4xl text-blue-600 hover:text-blue-800 transition-colors duration-300 icon-hover">
                             <FaLinkedin />

@@ -4,6 +4,7 @@ import Navbar from './components/navbar/Navbar'
 import Hero from './components/hero/Hero'
 import FAQ from './components/faq/Faq'
 import Starfield from './components/star/Starfield'
+import Speaker from './components/speaker/Speaker'
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Hero />
       </section>
       <section id='About'>About</section>
-      <section id='Speakers'>Speakers</section>
+      <section id='Speakers'>
+        <Speaker />
+      </section>
       <section id='Sponsors'>Sponsors</section>
       <section id='Team'>Team</section>
       <section id='FAQ'><FAQ /></section>

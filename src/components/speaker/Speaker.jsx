@@ -10,18 +10,7 @@ const speakers = [
         position: 'Research Scientist',
         description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
     },
-    {
-        photo: '/shabd.jpeg',
-        name: 'Shabd Patel',
-        position: 'Research Scientist',
-        description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
-    },
-    {
-        photo: '/shabd.jpeg',
-        name: 'Shabd Patel',
-        position: 'Research Scientist',
-        description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
-    },
+
     {
         photo: '/shabd.jpeg',
         name: 'Shabd Patel',
@@ -64,7 +53,7 @@ const Speakers = () => {
             transition: {
                 type: 'spring',
                 stiffness: 50,
-                delay: 0.5,
+                delay: 0.7,
                 staggerChildren: 0.3
             }
         }
@@ -74,6 +63,10 @@ const Speakers = () => {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 50 } }
     };
+
+    const cardWidth = window.innerWidth < 768 ? window.innerWidth - 32 : 320;
+    const dragConstraintsRight = 0;
+    const dragConstraintsLeft = -(speakers.length - visibleCards) * cardWidth;
 
     return (
         <motion.div
@@ -88,13 +81,13 @@ const Speakers = () => {
             </motion.h1>
             <div className="w-full max-w-screen-lg overflow-x-auto overflow-y-hidden rounded-lg">
                 <motion.div
-                    className="flex space-x-14"
+                    className="flex space-x-4 md:space-x-8 lg:space-x-14"
                     drag="x"
-                    dragConstraints={{ right: 0, left: -((speakers.length - visibleCards) * 320) }}
+                    dragConstraints={{ right: dragConstraintsRight, left: dragConstraintsLeft }}
                     variants={containerVariants}
                 >
                     {speakers.map((speaker, index) => (
-                        <motion.div key={index} variants={cardVariants}>
+                        <motion.div key={index} variants={cardVariants} className="min-w-full md:min-w-0 md:w-72">
                             <SpeakerCard
                                 photo={speaker.photo}
                                 name={speaker.name}

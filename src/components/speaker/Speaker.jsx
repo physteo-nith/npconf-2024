@@ -53,7 +53,7 @@ const Speakers = () => {
             transition: {
                 type: 'spring',
                 stiffness: 50,
-                delay: 0.7,
+                delay: 0.5,
                 staggerChildren: 0.3
             }
         }

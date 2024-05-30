@@ -112,16 +112,16 @@ const FAQ = () => {
                 >
                     <h1 className="text-4xl font-bold mb-8 text-slate-300 text-center">Contact Us</h1>
                     <div className="flex space-x-8">
-                        <a href="https://www.linkedin.com/in/physteo-nith-34a405255/" className="text-4xl text-blue-600 hover:text-blue-800 transition-colors duration-300 icon-hover">
+                        <a href="https://www.linkedin.com/in/physteo-nith-34a405255/" target="_blank" className="text-4xl text-blue-600 hover:text-blue-800 transition-colors duration-300 icon-hover">
                             <FaLinkedin />
                         </a>
-                        <a href="https://github.com/physteo-nith" className="text-4xl text-blue hover:text-gray-700 transition-colors duration-300 icon-hover">
+                        <a href="https://github.com/physteo-nith/" target="_blank" className="text-4xl text-blue hover:text-gray-700 transition-colors duration-300 icon-hover">
                             <FaGithub />
                         </a>
-                        <a href="https://www.instagram.com/physteo?igsh=enh1NWFucDJ5NGc4" className="text-4xl text-blue hover:text-pink-800 transition-colors duration-300 icon-hover">
+                        <a href="https://www.instagram.com/physteo?igsh=enh1NWFucDJ5NGc4/" target="_blank" className="text-4xl text-blue hover:text-pink-800 transition-colors duration-300 icon-hover">
                             <FaInstagram />
                         </a>
-                        <a href="https://x.com/physteo?t=_nhVeLqYEwVic5EQpb4BvQ&s=09" className="text-4xl text-blue-500 hover:text-blue-700 transition-colors duration-300 icon-hover">
+                        <a href="https://x.com/physteo?t=_nhVeLqYEwVic5EQpb4BvQ&s=09/" target="_blank" className="text-4xl text-blue-500 hover:text-blue-700 transition-colors duration-300 icon-hover">
                             <FaTwitter />
                         </a>
                     </div>
@@ -135,7 +135,7 @@ const FAQ = () => {
                     height: 28rem; /* Custom height */
                 }
             `}</style>
-        </div>
+        </div >
     );
 };
 

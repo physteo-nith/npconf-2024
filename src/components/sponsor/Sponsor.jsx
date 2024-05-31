@@ -1,7 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 const sponsors = [
+    { logo: '/SBI.png', name: 'State Bank of India' },
+    { logo: '/SBI.png', name: 'State Bank of India' },
+    { logo: '/SBI.png', name: 'State Bank of India' },
+    { logo: '/SBI.png', name: 'State Bank of India' },
+    { logo: '/SBI.png', name: 'State Bank of India' },
     { logo: '/SBI.png', name: 'State Bank of India' },
     { logo: '/SBI.png', name: 'State Bank of India' },
     { logo: '/SBI.png', name: 'State Bank of India' },
@@ -57,22 +62,52 @@ const Sponsor = () => {
                 </div>
             </motion.div>
             <motion.div
-                className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-4 overflow-x-scroll md:overflow-x-visible scrollbar-hide"
+                className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-4 gap-3 overflow-x-auto md:overflow-x-visible"
                 variants={containerVariants}
             >
                 {sponsors.map((sponsor, index) => (
-                    <motion.div
-                        key={index}
-                        className="p-6 rounded-lg shadow-md flex flex-col items-center min-w-[250px] md:min-w-0"
-                        variants={itemVariants}
-                    >
-                        <div className="w-40 h-40 rounded-full overflow-hidden mb-4">
-                            <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover" />
-                        </div>
-                        <h2 className="text-slate-100 font-bold text-1xl text-center">{sponsor.name}</h2>
-                    </motion.div>
+                    <SponsorLogoCard key={index} sponsor={sponsor} />
                 ))}
             </motion.div>
+        </motion.div>
+    );
+};
+
+const SponsorLogoCard = ({ sponsor }) => {
+    const cardRef = useRef(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [-50, 50], [-25, 25]);
+    const rotateY = useTransform(x, [-50, 50], [-25, 25]);
+
+    const handleMouseMove = (e) => {
+        const rect = cardRef.current.getBoundingClientRect();
+        const cardX = e.clientX - rect.left;
+        const cardY = e.clientY - rect.top;
+        x.set(cardX - rect.width / 2);
+        y.set(cardY - rect.height / 2);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={cardRef}
+            className="p-1 rounded-lg shadow-md flex flex-col items-center min-w-[150px] md:min-w-0"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ perspective: 1000 }}
+        >
+            <motion.div
+                className="w-24 h-24 rounded-full overflow-hidden mb-2"
+                style={{ rotateX, rotateY }}
+            >
+                <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover" />
+            </motion.div>
+            <h2 className="text-slate-100 font-bold text-base text-center">{sponsor.name}</h2>
         </motion.div>
     );
 };

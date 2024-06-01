@@ -39,7 +39,7 @@ const Sponsor = () => {
             className="min-h-screen bg-black flex flex-col items-center p-8"
         >
             <motion.h1
-                className="text-5xl font-bold text-white mb-14"
+                className="text-5xl font-bold text-white mb-14 text-center md:text-left"
                 variants={itemVariants}
             >
                 Event Sponsors

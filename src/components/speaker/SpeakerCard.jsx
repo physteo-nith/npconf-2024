@@ -24,13 +24,13 @@ const SpeakerCard = ({ photo, name, position, description }) => {
     return (
         <motion.div
             ref={cardRef}
-            className="border border-zinc-400 rounded-lg relative w-full sm:w-72 h-96 bg-black hover:bg-zinc-700 p-1 overflow-hidden shadow-lg flex flex-col items-center flex-shrink-0 transition-colors duration-300"
+            className="border border-zinc-400 rounded-lg relative w-full md:w-80 h-auto md:h-96 bg-black hover:bg-black p-1 overflow-hidden shadow-lg flex flex-col items-center flex-shrink-0 transition-colors duration-300"
             style={{ perspective: 1000 }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
             <motion.div
-                className="w-27 h-27 rounded-lg overflow-hidden mb-4 mt-3 mr-3 ml-3"
+                className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden mb-4 mt-3"
                 style={{ rotateX, rotateY }}
             >
                 <img src={photo} alt={name} className="w-full h-full object-cover" />
@@ -39,7 +39,7 @@ const SpeakerCard = ({ photo, name, position, description }) => {
                 <h2 className="text-lg font-semibold text-slate-100">{name}</h2>
                 <p className="text-slate-100">{position}</p>
             </div>
-            <div className="text-center">
+            <div className="text-center px-3">
                 <p className="text-slate-300">{description}</p>
             </div>
         </motion.div>

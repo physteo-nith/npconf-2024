@@ -6,6 +6,7 @@ import FAQ from './components/faq/Faq'
 import Starfield from './components/star/Starfield'
 import Speaker from './components/speaker/Speaker'
 import Sponsor from './components/sponsor/Sponsor'
+import Team from './components/team/Team'
 
 
 function App() {
@@ -32,8 +33,12 @@ function App() {
       <section id='Sponsors'>
         <Sponsor />
       </section>
-      <section id='Team'>Team</section>
-      <section id='FAQ'><FAQ /></section>
+      <section id='Team'>
+        <Team />
+      </section>
+      <section id='FAQ'>
+        <FAQ />
+      </section>
     </div>
   )
 }

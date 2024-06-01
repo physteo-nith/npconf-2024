@@ -1,0 +1,82 @@
+{
+    "1st Year": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        }
+    ],
+    "2nd Year": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        }
+    ],
+    "3rd Year": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        }
+    ],
+    "Final Year": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        }
+    ]
+}

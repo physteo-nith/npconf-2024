@@ -62,7 +62,7 @@ const Sponsor = () => {
                 </div>
             </motion.div>
             <motion.div
-                className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-4 gap-3 overflow-x-auto md:overflow-x-visible"
+                className="sponsor-container w-full max-w-4xl grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5"
                 variants={containerVariants}
             >
                 {sponsors.map((sponsor, index) => (
@@ -96,18 +96,18 @@ const SponsorLogoCard = ({ sponsor }) => {
     return (
         <motion.div
             ref={cardRef}
-            className="p-1 rounded-lg shadow-md flex flex-col items-center min-w-[150px] md:min-w-0"
+            className="sponsor-logo-card p-1 rounded-lg shadow-md flex flex-col items-center min-w-[50px] md:min-w-0"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ perspective: 1000 }}
         >
             <motion.div
-                className="w-24 h-24 rounded-full overflow-hidden mb-2"
+                className="w-12 h-12 sm:w-24 sm:h-24 rounded-full overflow-hidden mb-2"
                 style={{ rotateX, rotateY }}
             >
                 <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover" />
             </motion.div>
-            <h2 className="text-slate-100 font-bold text-base text-center">{sponsor.name}</h2>
+            <h2 className="text-slate-100 font-bold text-xs sm:text-base text-center">{sponsor.name}</h2>
         </motion.div>
     );
 };

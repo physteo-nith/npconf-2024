@@ -34,7 +34,7 @@ function App() {
         <Sponsor />
       </section>
       <section id='Team'>
-        <Team />
+        hii
       </section>
       <section id='FAQ'>
         <FAQ />

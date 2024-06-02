@@ -40,12 +40,7 @@ const speakers = [
         position: 'Research Scientist',
         description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
     },
-    {
-        photo: '/shabd.jpeg',
-        name: 'Shabd Patel',
-        position: 'Research Scientist',
-        description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
-    },
+    // Add more speaker data as needed
 ];
 
 const Speakers = () => {
@@ -87,25 +82,24 @@ const Speakers = () => {
         visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 50 } }
     };
 
-    // Adjust drag constraints dynamically
     const cardWidth = window.innerWidth < 768 ? window.innerWidth - 32 : 320;
     const dragConstraintsRight = 0;
-    const dragConstraintsLeft = -(speakers.length - visibleCards) * (cardWidth + 16); // Adjusted for spacing
+    const dragConstraintsLeft = -(speakers.length - visibleCards) * (cardWidth + 16);
 
     return (
         <motion.div
             ref={ref}
-            className="min-h-screen bg-black flex flex-col items-center justify-center p-4"
+            className="min-h-screen bg-black flex flex-col items-center justify-center px-4 md:px-8 lg:px-12 w-full max-w-xs md:max-w-screen-md lg:max-w-screen-lg mx-auto" // Adjusted width for mobile view
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={containerVariants}
         >
-            <motion.h1 className="text-5xl font-bold text-white mb-14" variants={cardVariants}>
+            <motion.h1 className="text-4xl md:text-5xl font-bold text-white mb-10 md:mb-14" variants={cardVariants}>
                 Our Speakers
             </motion.h1>
-            <div className="w-full max-w-screen-lg overflow-x-auto overflow-y-hidden rounded-lg">
+            <div className="w-full overflow-x-auto overflow-y-hidden rounded-lg">
                 <motion.div
-                    className="flex space-x-4 md:space-x-8 lg:space-x-8" // Increased space here
+                    className="flex space-x-4 md:space-x-3 lg:space-x-4"
                     drag="x"
                     dragConstraints={{ right: dragConstraintsRight, left: dragConstraintsLeft }}
                     variants={containerVariants}

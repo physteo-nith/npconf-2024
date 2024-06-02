@@ -9,7 +9,7 @@ const About = () => {
     return (
         <div className="full-height relative flex flex-col justify-center items-center text-white">
             <motion.div
-                className="absolute top-0 w-full flex justify-center mt-[600px] md:mt-[-115px] z-20"
+                className="absolute top-0 w-full flex justify-center mt-[595px] md:mt-[-115px] z-20"
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ type: 'spring', stiffness: 50, delay: 0.7 }}

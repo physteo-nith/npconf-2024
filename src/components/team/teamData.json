@@ -77,6 +77,33 @@
                 "linkedin": "#",
                 "github": "#"
             }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
         }
     ]
 }

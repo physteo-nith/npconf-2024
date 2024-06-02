@@ -1,145 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { useAnimation, motion } from 'framer-motion';
+import { InView } from 'react-intersection-observer';
+import TeamCard from './TeamCard';
 import teamData from './teamData.json';
 
-const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
-};
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
-};
-
 const Team = () => {
-    const [selectedYear, setSelectedYear] = useState('Final Year');
-    const [teamMembers, setTeamMembers] = useState([]);
+    const [selectedYear, setSelectedYear] = useState(Object.keys(teamData)[3]);
+    const [teamMembers, setTeamMembers] = useState(teamData[selectedYear]);
+    const controls = useAnimation();
 
     useEffect(() => {
-        setTeamMembers(teamData[selectedYear] || []);
+        setTeamMembers(teamData[selectedYear]);
     }, [selectedYear]);
 
-    const handleYearChange = (e) => {
-        setSelectedYear(e.target.value);
-    };
-
-    // Adjust drag constraints dynamically
-    const cardWidth = window.innerWidth < 768 ? window.innerWidth - 32 : 320;
-    const dragConstraintsRight = 0;
-    const dragConstraintsLeft = -(teamMembers.length - 3) * (cardWidth + 16); // Adjusted for spacing
-
-    return (
-        <motion.div
-            className="min-h-screen bg-black text-white flex flex-col items-center p-8"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-        >
-            <motion.h1 className="text-5xl font-bold mb-8 text-center" variants={variants}>Our Team</motion.h1>
-            <div className="w-full flex justify-center mb-8">
-                <motion.select
-                    value={selectedYear}
-                    onChange={handleYearChange}
-                    className="w-40 p-2 bg-gray-800 text-white rounded-md"
-                    variants={variants}
-                >
-                    <option>1st Year</option>
-                    <option>2nd Year</option>
-                    <option>3rd Year</option>
-                    <option>Final Year</option>
-                </motion.select>
-            </div>
-            <div className="w-full overflow-x-auto py-4">
-                <motion.div
-                    className="flex justify-center space-x-4 px-4" // Center the cards and add padding for better alignment
-                    drag="x"
-                    dragConstraints={{ right: dragConstraintsRight, left: dragConstraintsLeft }}
-                    variants={containerVariants}
-                >
-                    {teamMembers.map((member, index) => (
-                        <motion.div key={index} variants={variants} className="flex-shrink-0 min-w-[250px] max-w-[300px] bg-gray-800 p-6 rounded-lg shadow-md relative">
-                            <Card member={member} />
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </div>
-        </motion.div>
-    );
-};
-
-const Card = ({ member }) => {
-    const cardRef = useRef(null);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const rotateX = useTransform(y, [-100, 100], [-15, 15]);
-    const rotateY = useTransform(x, [-100, 100], [-15, 15]);
-
-    const handleMouseMove = (e) => {
-        const rect = cardRef.current.getBoundingClientRect();
-        const cardX = e.clientX - rect.left;
-        const cardY = e.clientY - rect.top;
-        x.set(cardX - rect.width / 2);
-        y.set(cardY - rect.height / 2);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
+    const variants = {
+        hidden: { opacity: 0, y: 100 },
+        visible: { opacity: 1, y: 0 }
     };
 
     return (
-        <motion.div
-            ref={cardRef}
-            className="w-full h-full"
-            style={{ perspective: 1000 }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            whileHover={{ scale: 1.07 }}
-        >
-            <motion.div
-                className="w-full h-48 rounded-md overflow-hidden mb-4"
-                style={{ rotateX, rotateY }}
+        <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4 md:px-8 lg:px-12 w-full max-w-xs md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-[-30px]">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 md:mb-14">Our Team</h1>
+            <select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                className="mb-6 p-2 rounded bg-gray-800 text-white"
             >
-                <motion.img
-                    src={member.photo}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20
+                {Object.keys(teamData).map((year, index) => (
+                    <option key={index} value={year}>
+                        {year}
+                    </option>
+                ))}
+            </select>
+            <div className="w-full overflow-x-auto overflow-y-hidden rounded-lg hide-scrollbar">
+                <InView
+                    as="div"
+                    threshold={0.1}
+                    onChange={(inView) => {
+                        if (inView) {
+                            controls.start("visible");
+                        }
                     }}
-                />
-            </motion.div>
-            <h2 className="text-2xl font-bold mb-2 text-center">{member.name}</h2>
-            <p className="text-center mb-4">{member.position}</p>
-            <p className="text-center mb-4">{member.description}</p>
-            <div className="flex justify-center space-x-4">
-                {member.social.twitter && (
-                    <a href={member.social.twitter} className="text-blue-500 hover:text-blue-400">
-                        <FaTwitter className="text-2xl" />
-                    </a>
-                )}
-                {member.social.instagram && (
-                    <a href={member.social.instagram} className="text-pink-500 hover:text-pink-400">
-                        <FaInstagram className="text-2xl" />
-                    </a>
-                )}
-                {member.social.linkedin && (
-                    <a href={member.social.linkedin} className="text-blue-700 hover:text-blue-600">
-                        <FaLinkedin className="text-2xl" />
-                    </a>
-                )}
-                {member.social.github && (
-                    <a href={member.social.github} className="text-gray-500 hover:text-gray-400">
-                        <FaGithub className="text-2xl" />
-                    </a>
-                )}
+                >
+                    <motion.div
+                        className="flex space-x-4 md:space-x-4 lg:space-x-4"
+                        initial="hidden"
+                        animate={controls}
+                        variants={variants}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
+                        {teamMembers.map((member, index) => (
+                            <div key={index} className="flex-shrink-0 w-full md:w-64">
+                                <TeamCard
+                                    photo={member.photo}
+                                    name={member.name}
+                                    social={member.social}
+                                />
+                            </div>
+                        ))}
+                    </motion.div>
+                </InView>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

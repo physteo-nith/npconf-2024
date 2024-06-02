@@ -40,6 +40,12 @@ const speakers = [
         position: 'Research Scientist',
         description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
     },
+    {
+        photo: '/shabd.jpeg',
+        name: 'Shabd Patel',
+        position: 'Research Scientist',
+        description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
+    },
     // Add more speaker data as needed
 ];
 
@@ -97,7 +103,7 @@ const Speakers = () => {
             <motion.h1 className="text-4xl md:text-5xl font-bold text-white mb-10 md:mb-14" variants={cardVariants}>
                 Our Speakers
             </motion.h1>
-            <div className="w-full overflow-x-auto overflow-y-hidden rounded-lg">
+            <div className="w-full overflow-x-auto overflow-y-hidden rounded-lg hide-scrollbar">
                 <motion.div
                     className="flex space-x-4 md:space-x-3 lg:space-x-4"
                     drag="x"

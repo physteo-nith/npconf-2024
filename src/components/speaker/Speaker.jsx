@@ -46,6 +46,18 @@ const speakers = [
         position: 'Research Scientist',
         description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
     },
+    {
+        photo: '/shabd.jpeg',
+        name: 'Shabd Patel',
+        position: 'Research Scientist',
+        description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
+    },
+    {
+        photo: '/shabd.jpeg',
+        name: 'Shabd Patel',
+        position: 'Research Scientist',
+        description: 'Shabd specializes in quantum mechanics and has published numerous papers.'
+    },
     // Add more speaker data as needed
 ];
 

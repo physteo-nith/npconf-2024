@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollTop, setLastScrollTop] = useState(0);
     const [activeSection, setActiveSection] = useState('Home');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -28,6 +30,14 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollTop]);
+
+    useEffect(() => {
+        if (location.pathname === '/Team') {
+            setActiveSection('Team');
+        } else if (location.pathname === '/') {
+            setActiveSection('Home');
+        }
+    }, [location]);
 
     useEffect(() => {
         const ticketImage = document.getElementById('ticketImage');
@@ -60,16 +70,16 @@ const Navbar = () => {
                     }`}
             >
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-4">
-                    <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src="/physteo.jpeg" className="h-12 rounded-full" alt="Physteo Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                             Physteo
                         </span>
-                    </a>
+                    </Link>
                     <div className="flex md:order-2 h-12 space-x-3 md:space-x-0 rtl:space-x-reverse ">
-                        <a href="#" className="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
+                        <Link to="/" className="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
                             <img id="ticketImage" src="/ticket1.png" className="h-20 w-22" alt="Physteo Logo" />
-                        </a>
+                        </Link>
                         <button
                             data-collapse-toggle="navbar-sticky"
                             type="button"
@@ -120,59 +130,59 @@ const Navbar = () => {
                     >
                         <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:border-gray-700">
                             <li>
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/"
                                     className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Home' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     aria-current="page"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#About"
+                                <Link
+                                    to="/#About"
                                     className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'About' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     About
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#Speakers"
+                                <Link
+                                    to="/#Speakers"
                                     className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Speakers' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Speakers
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#Sponsors"
+                                <Link
+                                    to="/#Sponsors"
                                     className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Sponsors' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Sponsors
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#Team"
+                                <Link
+                                    to="/Team"
                                     className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'Team' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Team
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#FAQ"
+                                <Link
+                                    to="/#FAQ"
                                     className={`block py-3 px-4 rounded md:p-2 ${activeSection === 'FAQ' ? ' text-blue-700 border border-blue-300' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     FAQ
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

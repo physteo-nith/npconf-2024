@@ -7,49 +7,79 @@ import Starfield from '../star/Starfield'; // Adjust the path according to your 
 
 const Team = () => {
     const controls = useAnimation();
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 375);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 375);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Check initial window size
+        handleResize();
+
+        // Clean up event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const variants = {
         hidden: { opacity: 0, y: 100 },
         visible: { opacity: 1, y: 0 }
     };
 
-    const renderTeamSection = (year) => (
-        <div className="mb-12 w-full">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{year}</h2>
-            <div className="w-full overflow-x-auto overflow-y-hidden rounded-lg hide-scrollbar">
-                <InView
-                    as="div"
-                    threshold={0.1}
-                    onChange={(inView) => {
-                        if (inView) {
-                            controls.start("visible");
-                        }
-                    }}
-                >
-                    <motion.div
-                        className="flex space-x-4 md:space-x-6 lg:space-x-8 px-4 md:px-6 lg:px-8"
-                        initial="hidden"
-                        animate={controls}
-                        variants={variants}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+    const renderTeamSection = (year) => {
+        // Check if the year exists in teamData
+        if (!teamData[year]) {
+            console.error(`No data found for year: ${year}`);
+            return null;
+        }
+
+        return (
+            <div className="mb-12 w-full">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{year}</h2>
+                <div className="w-full overflow-x-auto overflow-y-hidden rounded-lg hide-scrollbar">
+                    <InView
+                        as="div"
+                        threshold={0.1}
+                        onChange={(inView) => {
+                            if (inView) {
+                                controls.start("visible");
+                            }
+                        }}
                     >
-                        {teamData[year].map((member, index) => (
-                            <div key={index} className="flex-shrink-0 w-full md:w-64">
-                                <TeamCard
-                                    photo={member.photo}
-                                    name={member.name}
-                                    social={member.social}
-                                />
-                            </div>
-                        ))}
-                    </motion.div>
-                </InView>
+                        <motion.div
+                            className="flex space-x-4 md:space-x-6 lg:space-x-8 px-4 md:px-6 lg:px-8"
+                            initial="hidden"
+                            animate={controls}
+                            variants={variants}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
+                            {teamData[year].map((member, index) => (
+                                <div key={index} className="flex-shrink-0 w-full md:w-64">
+                                    <TeamCard
+                                        photo={member.photo}
+                                        name={member.name}
+                                        social={member.social}
+                                    />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </InView>
+                </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     return (
-        <div id='Team' className="relative min-h-screen bg-black flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 mx-auto w-full max-w-6xl mt-[-30px]">
+        <div
+            id='Team'
+            className="relative bg-black flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 mx-auto max-w-6xl mt-[-30px]"
+            style={{
+                width: isMobile ? '360px' : '100%',
+                // minHeight: isMobile ? 'vh' : '100vh'  // Adjust the height for mobile view
+            }}
+        >
             <Starfield
                 starCount={5000}
                 starColor={[255, 255, 255]}

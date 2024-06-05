@@ -1,5 +1,50 @@
 {
-    "1st Year": [
+    "Volunteers": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
         {
             "photo": "/shabd.jpeg",
             "name": "Shabd Patel",
@@ -19,7 +64,70 @@
             }
         }
     ],
-    "2nd Year": [
+    "Excuatives": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
         {
             "photo": "/shabd.jpeg",
             "name": "Shabd Patel",
@@ -30,7 +138,70 @@
             }
         }
     ],
-    "3rd Year": [
+    "Coordinators": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
         {
             "photo": "/shabd.jpeg",
             "name": "Shabd Patel",
@@ -41,7 +212,25 @@
             }
         }
     ],
-    "Final Year": [
+    "Head Members": [
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
+        {
+            "photo": "/shabd.jpeg",
+            "name": "Shabd Patel",
+            "social": {
+                "twitter": "#",
+                "linkedin": "#",
+                "github": "#"
+            }
+        },
         {
             "photo": "/shabd.jpeg",
             "name": "Shabd Patel",

@@ -3,6 +3,7 @@ import { useAnimation, motion } from 'framer-motion';
 import { InView } from 'react-intersection-observer';
 import TeamCard from './TeamCard';
 import teamData from './teamData.json';
+import Starfield from '../star/Starfield'; // Adjust the path according to your folder structure
 
 const Team = () => {
     const [selectedYear, setSelectedYear] = useState(Object.keys(teamData)[3]);
@@ -19,7 +20,13 @@ const Team = () => {
     };
 
     return (
-        <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4 md:px-8 lg:px-12 w-full max-w-xs md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-[-30px]">
+        <div id='Team' className="relative min-h-screen bg-black flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 mx-auto w-full max-w-6xl mt-[-30px]">
+            <Starfield
+                starCount={5000}
+                starColor={[255, 255, 255]}
+                speedFactor={0.15}
+                backgroundColor="black"
+            />
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 md:mb-14">Our Team</h1>
             <select
                 value={selectedYear}
@@ -43,7 +50,7 @@ const Team = () => {
                     }}
                 >
                     <motion.div
-                        className="flex space-x-4 md:space-x-4 lg:space-x-4"
+                        className="flex space-x-4 md:space-x-6 lg:space-x-8 px-4 md:px-6 lg:px-8"
                         initial="hidden"
                         animate={controls}
                         variants={variants}

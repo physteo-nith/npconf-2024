@@ -100,7 +100,7 @@ const Speakers = () => {
         visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 50 } }
     };
 
-    const cardWidth = window.innerWidth < 768 ? window.innerWidth - 32 : 320;
+    const cardWidth = window.innerWidth < 768 ? window.innerWidth - 24 : 320;
     const dragConstraintsRight = 0;
     const dragConstraintsLeft = -(speakers.length - visibleCards) * (cardWidth + 16);
 

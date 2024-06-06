@@ -7,11 +7,13 @@ import Starfield from '../star/Starfield'; // Adjust the path according to your 
 
 const Team = () => {
     const controls = useAnimation();
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 375);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [visibleCards, setVisibleCards] = useState(window.innerWidth < 768 ? 1 : 3);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 375);
+            setIsMobile(window.innerWidth <= 768);
+            setVisibleCards(window.innerWidth < 768 ? 1 : 3);
         };
 
         window.addEventListener('resize', handleResize);
@@ -29,11 +31,14 @@ const Team = () => {
     };
 
     const renderTeamSection = (year) => {
-        // Check if the year exists in teamData
         if (!teamData[year]) {
             console.error(`No data found for year: ${year}`);
             return null;
         }
+
+        const cardWidth = window.innerWidth < 768 ? window.innerWidth - 32 : 320;
+        const dragConstraintsRight = 0;
+        const dragConstraintsLeft = -(teamData[year].length - visibleCards) * (cardWidth + 16);
 
         return (
             <div className="mb-12 w-full">
@@ -54,15 +59,17 @@ const Team = () => {
                             animate={controls}
                             variants={variants}
                             transition={{ duration: 0.5, ease: "easeOut" }}
+                            drag="x"
+                            dragConstraints={{ right: dragConstraintsRight, left: dragConstraintsLeft }}
                         >
                             {teamData[year].map((member, index) => (
-                                <div key={index} className="flex-shrink-0 w-full md:w-64">
+                                <motion.div key={index} className="flex-shrink-0 w-full md:w-64" variants={variants}>
                                     <TeamCard
                                         photo={member.photo}
                                         name={member.name}
                                         social={member.social}
                                     />
-                                </div>
+                                </motion.div>
                             ))}
                         </motion.div>
                     </InView>
@@ -74,7 +81,7 @@ const Team = () => {
     return (
         <div
             id='Team'
-            className="relative bg-black flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 mx-auto max-w-6xl mt-[-30px]"
+            className={`relative bg-black flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 mx-auto max-w-6xl mt-[-30px] ${isMobile ? 'ml-2' : ''}`}
             style={{
                 width: isMobile ? '360px' : '100%',
                 // minHeight: isMobile ? 'vh' : '100vh'  // Adjust the height for mobile view
@@ -89,7 +96,7 @@ const Team = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 md:mb-14">Our Team</h1>
             {renderTeamSection('Head Members')}
             {renderTeamSection('Coordinators')}
-            {renderTeamSection('Excuatives')}
+            {renderTeamSection('Executives')}
             {renderTeamSection('Volunteers')}
         </div>
     );

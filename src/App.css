@@ -99,5 +99,16 @@ body {
   align-items: center;
   flex-direction: column;
   margin-left: 80px;
-  /* If you want items to stack vertically */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  #Team {
+    margin-left: 16px;
+    /* Reduced margin-left for mobile view */
+    width: calc(100% - 32px);
+    /* Adjust width to fit the screen with reduced margin */
+    height: 225vh;
+    /* Adjust height for mobile view */
+  }
 }

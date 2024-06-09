@@ -1,0 +1,114 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* @media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+} */
+/* 
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+
+
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
+
+}
+
+
+section {
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+body {
+  background-color: #000000;
+  color: lightgray;
+}
+
+#Navbar {
+  height: 10vh;
+}
+
+#Team {
+  height: 290vh;
+  scroll-snap-align: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  #Team {
+    margin-left: 16px;
+    /* Reduced margin-left for mobile view */
+    width: calc(100% - 32px);
+    /* Adjust width to fit the screen with reduced margin */
+    height: 225vh;
+    /* Adjust height for mobile view */
+  }
+}

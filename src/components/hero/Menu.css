@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icons {
+    width: 8vmin;
+    height: 8vmin;
+    border-radius: 50%;
+    /* background-color: aquamarine; */
+    /* overflow: hidden; */
+    font-size: 8vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    position: relative;
+    width: 60vmin;
+    height: 60vmin;
+    margin-top: 10vh;
+}
+
+.atom-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-icons {
+    height: 100%;
+    animation: circle 60s linear infinite;
+    position: relative;
+}
+
+.menu-icons div {
+    position: absolute;
+    top: 44%;
+    transform-origin: 30vmin;
+    transform: rotate(calc(360deg / 8 * var(--i)));
+}
+
+@keyframes circle {
+    100% {
+        transform: rotate(360deg);
+    }    
+}
+
+.hoveredTitle {
+    margin: 5vh;
+    font-weight: lighter;
+    font-size: 2.25rem;
+}
+
+/* RESPONSIVENESS GOES HERE */
+@media only screen and (max-width: 800px) {
+    .moon-icons {
+        width: 50px;
+        height: auto;
+    }
+
+    .hoveredTitle {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .moon-icons {
+        width: 40px;
+        height: auto;
+    }
+
+    .hoveredTitle {
+        font-size: 1.4rem;
+        position: absolute;
+        bottom: 10vh;
+    }
+}
